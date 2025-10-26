@@ -18,6 +18,7 @@ RUN curl -sS https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master
 RUN chmod +x install_server.sh
 
 CMD ["bash", "install_server.sh"]
+EXPOSE 3000
 
 # Keep container running (optional)
 CMD ["sleep", "infinity"]
