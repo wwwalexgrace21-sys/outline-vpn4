@@ -37,5 +37,7 @@ RUN bash -c "$(wget -qO- https://getoutline.org/install_server.sh)" || true
 EXPOSE 1024-65535/tcp
 EXPOSE 1024-65535/udp
 
+CMD ["sleep", "infinity"]
+
 # Default command
 CMD ["bash"]
