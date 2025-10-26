@@ -23,22 +23,41 @@
 # # Keep container running (optional)
 # CMD ["sleep", "infinity"]
 # Outline Server အတွက် Dockerfile
-FROM ubuntu:22.04
+# FROM ubuntu:22.04
 
-# Dependencies install
-RUN apt-get update && apt-get install -y \
-    curl wget sudo net-tools gnupg && \
-    apt-get clean
+# # Dependencies install
+# RUN apt-get update && apt-get install -y \
+#     curl wget sudo net-tools gnupg && \
+#     apt-get clean
 
-# Outline install script ကို run
-RUN bash -c "$(wget -qO- https://getoutline.org/install_server.sh)" || true
+# # Outline install script ကို run
+# RUN bash -c "$(wget -qO- https://getoutline.org/install_server.sh)" || true
 
-# Outline Server docker default port
-EXPOSE 1024-65535/tcp
-EXPOSE 1024-65535/udp
+# # Outline Server docker default port
+# EXPOSE 1024-65535/tcp
+# EXPOSE 1024-65535/udp
 
-CMD ["sleep", "infinity"]
-CMD ["npm","start"]
+# CMD ["sleep", "infinity"]
+# CMD ["npm","start"]
 
-# Default command
-CMD ["bash"]
+# # Default command
+# CMD ["bash"]
+# Node base image
+FROM node:18
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files and install
+COPY package*.json ./
+RUN npm install
+
+# Copy rest of the code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start the app
+CMD ["node", "server.js"]
+
