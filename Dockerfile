@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     git \
     gnupg \
     lsb-release
+    sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-apps/master/server_manager/install_scripts/install_server.sh)"
 
 FROM docker:dind
 
